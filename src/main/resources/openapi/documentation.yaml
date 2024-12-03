@@ -1,0 +1,34 @@
+openapi: "3.0.3"
+info:
+  title: "Application API"
+  description: "Application API"
+  version: "1.0.0"
+servers:
+  - url: "http://0.0.0.0:8080"
+paths:
+  /:
+    get:
+      description: "Hello World!"
+      security:
+        - oauth2: [ ]
+      responses:
+        "200":
+          description: "OK"
+          content:
+            text/plain:
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "Hello World!"
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: http://localhost:8081/realms/myrealm/protocol/openid-connect/auth
+          tokenUrl: http://localhost:8081/realms/myrealm/protocol/openid-connect/token
+          scopes:
+            openid: openid
+  schemas: {}
